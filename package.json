@@ -1,0 +1,51 @@
+{
+  "name": "@gonetone/get-youtube-id-by-url",
+  "version": "1.0.0",
+  "description": "Get YouTube channel or video id by url!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoneToneStudio/node-get-youtube-id-by-url.git"
+  },
+  "keywords": [
+    "youtube",
+    "youtube id",
+    "youtube channel id",
+    "youtube video id",
+    "get youtube id",
+    "get youtube channel id",
+    "get youtube video id",
+    "youtube url",
+    "google"
+  ],
+  "author": {
+    "name": "張文相 Wenxiang Zhang (旋風之音 GoneTone)",
+    "email": "p29022716@gmail.com",
+    "url": "https://github.com/GoneTone"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GoneToneStudio/node-get-youtube-id-by-url/issues"
+  },
+  "homepage": "https://github.com/GoneToneStudio/node-get-youtube-id-by-url",
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.0.5"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "cheerio": "^1.0.0-rc.10"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
