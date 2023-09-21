@@ -34,7 +34,6 @@
 
 const axios = require('axios')
 const cheerio = require('cheerio')
-const {remove} = require("cheerio/lib/api/manipulation");
 
 const axiosInstance = axios.create({
   headers: {
