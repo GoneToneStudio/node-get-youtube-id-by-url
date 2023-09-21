@@ -37,9 +37,9 @@ const { channelId, videoId } = require('..')
 test('Get YouTube Channel ID By Url', async () => {
   const id = await channelId('https://www.youtube.com/c/GoneTone')
   expect(id).toBe('UCYLtQ2gBXAnG6WaurcoZ7kg')
-}, 1000)
+}, 10000) //im on a mobile data connection right now i dont wanna hear anything about my timeout value is too high :(
 
 test('Get YouTube Video ID By Url', async () => {
   const id = await videoId('https://youtu.be/PB4gId2mPNc')
   expect(id).toBe('PB4gId2mPNc')
-}, 1000)
+}, 10000)
