@@ -34,10 +34,11 @@
 
 const axios = require('axios')
 const cheerio = require('cheerio')
+const {remove} = require("cheerio/lib/api/manipulation");
 
 const axiosInstance = axios.create({
   headers: {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0'
   },
   validateStatus: () => {
     return true
@@ -62,13 +63,12 @@ const channelId = async (url) => {
   if (checkUrl(url)) {
     const ytChannelPageResponse = await axiosInstance.get(url)
     const $ = cheerio.load(ytChannelPageResponse.data)
-
-    const id = $('meta[itemprop="channelId"]').attr('content')
+    const id = $('meta[itemprop="identifier"]').attr('content')  //updated itemprop. YouTube appears to have updated this since last commit.
     if (id) {
       return id
     }
   } else {
-    throw Error(`"${url}" is not a YouTube url.`)
+    throw Error(`"${url}" is not a YouTube channel.`)
   }
 
   throw Error(`Unable to get "${url}" channel id.`)
@@ -85,12 +85,12 @@ const videoId = async (url) => {
     const ytChannelPageResponse = await axiosInstance.get(url)
     const $ = cheerio.load(ytChannelPageResponse.data)
 
-    const id = $('meta[itemprop="videoId"]').attr('content')
+    const id = $('meta[itemprop="identifier"]').attr('content')  //apparently same goes for videos?
     if (id) {
       return id
     }
   } else {
-    throw Error(`"${url}" is not a YouTube url.`)
+    throw Error(`"${url}" is not a YouTube video.`)
   }
 
   throw Error(`Unable to get "${url}" video id.`)
