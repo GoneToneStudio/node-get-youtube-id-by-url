@@ -63,10 +63,8 @@ const channelId = async (url) => {
     const ytChannelPageResponse = await axiosInstance.get(url)
     const $ = cheerio.load(ytChannelPageResponse.data)
 
-    const id = $('meta[itemprop="channelId"]').attr('content')
-    if (id) {
-      return id
-    }
+    const id = $('meta[itemprop="identifier"]').attr('content')
+    if (id) return id
   } else {
     throw Error(`"${url}" is not a YouTube url.`)
   }
@@ -85,10 +83,8 @@ const videoId = async (url) => {
     const ytChannelPageResponse = await axiosInstance.get(url)
     const $ = cheerio.load(ytChannelPageResponse.data)
 
-    const id = $('meta[itemprop="videoId"]').attr('content')
-    if (id) {
-      return id
-    }
+    const id = $('meta[itemprop="identifier"]').attr('content')
+    if (id) return id
   } else {
     throw Error(`"${url}" is not a YouTube url.`)
   }

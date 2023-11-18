@@ -1,6 +1,6 @@
 {
   "name": "@gonetone/get-youtube-id-by-url",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get YouTube channel or video id by url!",
   "main": "index.js",
   "scripts": {
