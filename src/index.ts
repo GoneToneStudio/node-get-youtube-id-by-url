@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2021 旋風之音 GoneTone
+ * Copyright (c) 2014-2024 旋風之音 GoneTone
  *
  * Website: https://blog.reh.tw/
  * GitHub: https://github.com/GoneTone
@@ -30,16 +30,4 @@
  *               佛祖保佑                       永無 BUG
  */
 
-'use strict'
-
-const { channelId, videoId } = require('..')
-
-test('Get YouTube Channel ID By Url', async () => {
-  const id = await channelId('https://www.youtube.com/c/GoneTone')
-  expect(id).toBe('UCYLtQ2gBXAnG6WaurcoZ7kg')
-}, 1000)
-
-test('Get YouTube Video ID By Url', async () => {
-  const id = await videoId('https://youtu.be/PB4gId2mPNc')
-  expect(id).toBe('PB4gId2mPNc')
-}, 1000)
+export * from './GetYouTubeIdByUrl';

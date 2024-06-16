@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2021 旋風之音 GoneTone
+ * Copyright (c) 2014-2024 旋風之音 GoneTone
  *
  * Website: https://blog.reh.tw/
  * GitHub: https://github.com/GoneTone
@@ -30,19 +30,17 @@
  *               佛祖保佑                       永無 BUG
  */
 
-'use strict'
-
-const axios = require('axios')
-const cheerio = require('cheerio')
+import axios from 'axios';
+import * as cheerio from 'cheerio';
 
 const axiosInstance = axios.create({
-  headers: {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
-  },
-  validateStatus: () => {
-    return true
-  }
-})
+	headers: {
+		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+	},
+	validateStatus: () => {
+		return true;
+	}
+});
 
 /**
  * Check YouTube Url
@@ -50,7 +48,7 @@ const axiosInstance = axios.create({
  * @param {string} url
  * @returns {boolean}
  */
-const checkUrl = (url) => url.indexOf('youtube.com') !== -1 || url.indexOf('youtu.be') !== -1
+const checkUrl = (url: string): boolean => url.indexOf('youtube.com') !== -1 || url.indexOf('youtu.be') !== -1;
 
 /**
  * Get YouTube Channel ID By Url
@@ -58,19 +56,19 @@ const checkUrl = (url) => url.indexOf('youtube.com') !== -1 || url.indexOf('yout
  * @param {string} url Channel Url
  * @returns {Promise<string>} Channel ID
  */
-const channelId = async (url) => {
-  if (checkUrl(url)) {
-    const ytChannelPageResponse = await axiosInstance.get(url)
-    const $ = cheerio.load(ytChannelPageResponse.data)
+export const channelId = async (url: string): Promise<string> => {
+	if (checkUrl(url)) {
+		const ytChannelPageResponse = await axiosInstance.get(url);
+		const $ = cheerio.load(ytChannelPageResponse.data);
 
-    const id = $('meta[itemprop="identifier"]').attr('content')
-    if (id) return id
-  } else {
-    throw Error(`"${url}" is not a YouTube url.`)
-  }
+		const id = $('meta[itemprop="identifier"]').attr('content');
+		if (id) return id;
+	} else {
+		throw Error(`"${url}" is not a YouTube url.`);
+	}
 
-  throw Error(`Unable to get "${url}" channel id.`)
-}
+	throw Error(`Unable to get "${url}" channel id.`);
+};
 
 /**
  * Get YouTube Video ID By Url
@@ -78,21 +76,16 @@ const channelId = async (url) => {
  * @param {string} url Video Url
  * @returns {Promise<string>} Video ID
  */
-const videoId = async (url) => {
-  if (checkUrl(url)) {
-    const ytChannelPageResponse = await axiosInstance.get(url)
-    const $ = cheerio.load(ytChannelPageResponse.data)
+export const videoId = async (url: string): Promise<string> => {
+	if (checkUrl(url)) {
+		const ytChannelPageResponse = await axiosInstance.get(url);
+		const $ = cheerio.load(ytChannelPageResponse.data);
 
-    const id = $('meta[itemprop="identifier"]').attr('content')
-    if (id) return id
-  } else {
-    throw Error(`"${url}" is not a YouTube url.`)
-  }
+		const id = $('meta[itemprop="identifier"]').attr('content');
+		if (id) return id;
+	} else {
+		throw Error(`"${url}" is not a YouTube url.`);
+	}
 
-  throw Error(`Unable to get "${url}" video id.`)
-}
-
-module.exports = {
-  channelId,
-  videoId
-}
+	throw Error(`Unable to get "${url}" video id.`);
+};

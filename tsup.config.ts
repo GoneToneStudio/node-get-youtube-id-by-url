@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2021 旋風之音 GoneTone
+ * Copyright (c) 2014-2024 旋風之音 GoneTone
  *
  * Website: https://blog.reh.tw/
  * GitHub: https://github.com/GoneTone
@@ -30,8 +30,22 @@
  *               佛祖保佑                       永無 BUG
  */
 
-'use strict'
+import { defineConfig } from 'tsup';
 
-const GetYouTubeIdByUrl = require('./src/GetYouTubeIdByUrl')
-
-module.exports = GetYouTubeIdByUrl
+export default defineConfig({
+	entry: ['src/index.ts'],
+	external: [],
+	noExternal: [],
+	platform: 'node',
+	format: ['esm', 'cjs'],
+	target: 'es2020',
+	skipNodeModulesBundle: true,
+	clean: true,
+	shims: true,
+	minify: false,
+	splitting: false,
+	keepNames: true,
+	dts: true,
+	sourcemap: true,
+	esbuildPlugins: []
+});

@@ -5,29 +5,33 @@ on:
     types: [ published ]
 
 jobs:
-  test:
+  npm-publish:
     runs-on: ${{ matrix.operating-system }}
+    environment: cd
 
     strategy:
       fail-fast: false
 
       matrix:
         operating-system: [ ubuntu-latest ]
-        node-version: [ 16.x ]
+        node-version: [ 20.x ]
 
     name: NPM Publish
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
+
+      - name: TypeScript Compiler
+        run: yarn build
 
       - name: Publish
         run: npm publish --access public
