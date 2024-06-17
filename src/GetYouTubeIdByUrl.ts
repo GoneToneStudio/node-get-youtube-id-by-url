@@ -34,12 +34,12 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 const axiosInstance = axios.create({
-	headers: {
-		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
-	},
-	validateStatus: () => {
-		return true;
-	}
+    headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+    },
+    validateStatus: () => {
+        return true;
+    }
 });
 
 /**
@@ -57,17 +57,17 @@ const checkUrl = (url: string): boolean => url.indexOf('youtube.com') !== -1 || 
  * @returns {Promise<string>} Channel ID
  */
 export const channelId = async (url: string): Promise<string> => {
-	if (checkUrl(url)) {
-		const ytChannelPageResponse = await axiosInstance.get(url);
-		const $ = cheerio.load(ytChannelPageResponse.data);
+    if (checkUrl(url)) {
+        const ytChannelPageResponse = await axiosInstance.get(url);
+        const $ = cheerio.load(ytChannelPageResponse.data);
 
-		const id = $('meta[itemprop="identifier"]').attr('content');
-		if (id) return id;
-	} else {
-		throw Error(`"${url}" is not a YouTube url.`);
-	}
+        const id = $('meta[itemprop="identifier"]').attr('content');
+        if (id) return id;
+    } else {
+        throw Error(`"${url}" is not a YouTube url.`);
+    }
 
-	throw Error(`Unable to get "${url}" channel id.`);
+    throw Error(`Unable to get "${url}" channel id.`);
 };
 
 /**
@@ -77,15 +77,15 @@ export const channelId = async (url: string): Promise<string> => {
  * @returns {Promise<string>} Video ID
  */
 export const videoId = async (url: string): Promise<string> => {
-	if (checkUrl(url)) {
-		const ytChannelPageResponse = await axiosInstance.get(url);
-		const $ = cheerio.load(ytChannelPageResponse.data);
+    if (checkUrl(url)) {
+        const ytChannelPageResponse = await axiosInstance.get(url);
+        const $ = cheerio.load(ytChannelPageResponse.data);
 
-		const id = $('meta[itemprop="identifier"]').attr('content');
-		if (id) return id;
-	} else {
-		throw Error(`"${url}" is not a YouTube url.`);
-	}
+        const id = $('meta[itemprop="identifier"]').attr('content');
+        if (id) return id;
+    } else {
+        throw Error(`"${url}" is not a YouTube url.`);
+    }
 
-	throw Error(`Unable to get "${url}" video id.`);
+    throw Error(`Unable to get "${url}" video id.`);
 };

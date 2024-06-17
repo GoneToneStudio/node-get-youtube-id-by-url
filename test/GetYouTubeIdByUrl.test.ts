@@ -34,11 +34,11 @@ import { expect, test } from '@jest/globals';
 import { channelId, videoId } from '../';
 
 test('Get YouTube Channel ID By Url', async () => {
-	const id = await channelId('https://www.youtube.com/c/GoneTone');
-	expect(id).toBe('UCYLtQ2gBXAnG6WaurcoZ7kg');
+    const id = await channelId('https://www.youtube.com/c/GoneTone');
+    expect(id).toBe('UCYLtQ2gBXAnG6WaurcoZ7kg');
 }, 1000);
 
 test('Get YouTube Video ID By Url', async () => {
-	const id = await videoId('https://youtu.be/PB4gId2mPNc');
-	expect(id).toBe('PB4gId2mPNc');
+    const id = await videoId('https://youtu.be/PB4gId2mPNc');
+    expect(id).toBe('PB4gId2mPNc');
 }, 1000);
